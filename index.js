@@ -60,4 +60,23 @@ app.post('/save-response', function (req, res) {
 
   })
 
+  app.get('/get-password', function (req, res) {
+    
+    const db = client.db('covidresource')
+    db.collection('admin').find({}).toArray(function(err, result) {
+        if (err) throw err;
+        console.log(result);
+        res.send({status: "success", data: result})
+      });
+    // const resourceCollection = db.collection('resources')
+    // resourceCollection.find()
+    // .then(result => {
+    //     res.send({status: "success", data: result})
+    // })
+    // .catch(error => console.error(error))
+
+    
+
+  })
+
 app.listen(process.env.PORT || 8080);
